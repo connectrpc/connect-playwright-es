@@ -6,7 +6,7 @@ the web browser, and to Node.js.
 
 ## Packages
 
-- [@connectrpc/playwright](https://www.npmjs.com/package/@connectrpc/playwright):
+- [@connectrpc/connect-playwright](https://www.npmjs.com/package/@connectrpc/connect-playwright):
   Utilities for writing end-to-end tests for a Connect-ES application using [Playwright](https://playwright.dev/).
 
 ## Legal

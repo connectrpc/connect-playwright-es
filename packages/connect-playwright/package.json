@@ -22,7 +22,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/connectrpc/connect-playwright-es.git",
-    "directory": "packages/playwright"
+    "directory": "packages/connect-playwright"
   },
   "sideEffects": false,
   "scripts": {

@@ -1,21 +1,21 @@
-# @connectrpc/playwright
+# @connectrpc/connect-playwright
 
 Connect is a family of libraries for building type-safe APIs with different languages and platforms.
 [@bufbuild/connect](https://www.npmjs.com/package/@bufbuild/connect) brings them to TypeScript,
 the web browser, and to Node.js.
 
-`@connectrpc/playwright` provides utilities for writing end-to-end tests for a Connect-ES application
+`@connectrpc/connect-playwright` provides utilities for writing end-to-end tests for a Connect-ES application
 using [Playwright](https://playwright.dev/).
 
 ## Installation
 
 ```
-npm install @connectrpc/playwright
+npm install @connectrpc/connect-playwright
 ```
 
 ## Usage
 
-`@connectrpc/playwright` is designed to simplify writing Playwright tests for your Connect-ES application by providing
+`@connectrpc/connect-playwright` is designed to simplify writing Playwright tests for your Connect-ES application by providing
 an API to mock unary RPCs.
 
 Unary Connect RPCs can be customized through the usage of the `createMockRouter` function. This function
