@@ -1,0 +1,43 @@
+{
+  "name": "@connectrpc/connect-playwright",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "description": "e2e utilities for use with Playwright and Connect",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    "import": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/esm/index.js"
+    },
+    "require": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist/**"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/connectrpc/connect-playwright-es.git",
+    "directory": "packages/connect-playwright"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
+    "test": "playwright install chromium && jasmine --config=jasmine.json",
+    "build": "npm run build:cjs && npm run build:esm+types",
+    "build:cjs": "tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
+    "build:esm+types": "tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types && echo >./dist/esm/package.json '{\"type\":\"module\", \"sideEffects\":false}'",
+    "format": "prettier --write --ignore-unknown '.' '!dist'",
+    "lint": "eslint --max-warnings 0 ."
+  },
+  "dependencies": {
+    "@playwright/test": "^1.36.2"
+  },
+  "peerDependencies": {
+    "@bufbuild/connect": "^0.12.0"
+  }
+}
