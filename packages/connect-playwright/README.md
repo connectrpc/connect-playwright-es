@@ -148,7 +148,7 @@ since it was not specified.
 Note that both the `service` and `rpc` methods return a `Promise`, which resolves to the original `MockRouter` object.
 This allows you to utilize promise-chaining if you wish.
 
-An example of using all of the above in practice can be found in the [playwright-example](https://github.com/connectrpc/tools/tree/main/packages/playwright-example)
+An example of using all of the above in practice can be found in the [connect-playwright-example](https://github.com/connectrpc/connect-playwright-es/tree/main/packages/connect-playwright-example)
 directory.
 
 ## Caveats
