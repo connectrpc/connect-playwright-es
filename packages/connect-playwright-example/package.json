@@ -1,0 +1,34 @@
+{
+  "name": "connect-playwright-example",
+  "version": "1.0.0",
+  "description": "An example using the @connectrpc/connect-playwright package to test a React app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "npm run generate && esbuild src/index.tsx --serve=localhost:3000 --servedir=www --outdir=www --bundle",
+    "lint": "npx tsc --noEmit && eslint --max-warnings 0 .",
+    "generate": "buf generate buf.build/connectrpc/eliza",
+    "test": "playwright install chromium && playwright test",
+    "format": "prettier --write --ignore-unknown '.' '!src/gen' '!playwright-report'"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@bufbuild/buf": "^1.23.1",
+    "@bufbuild/connect": "^0.12.0",
+    "@bufbuild/connect-web": "^0.12.0",
+    "@bufbuild/protobuf": "^1.2.1",
+    "@bufbuild/protoc-gen-connect-es": "^0.12.0",
+    "@bufbuild/protoc-gen-es": "^1.2.1",
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.6",
+    "esbuild": "^0.18.17",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "@connectrpc/connect-playwright": "0.1.0",
+    "@playwright/test": "^1.36.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
