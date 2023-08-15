@@ -84,16 +84,16 @@ directory.
 
 ## Ecosystem
 
-* [connect-es](https://github.com/bufbuild/connect-es):
+* [connect-es](https://github.com/connectrpc/connect-es):
   Connect, gRPC, and gRPC-Web support for Protobuf and TypeScript.
-* [connect-query](https://github.com/bufbuild/connect-query):
+* [connect-query-es](https://github.com/connectrpc/connect-query-es):
   TypeScript-first expansion pack for TanStack Query that gives you Protobuf superpowers
 * [connect-swift](https://github.com/bufbuild/connect-swift):
   Idiomatic gRPC & Connect RPCs for Swift.
 * [connect-go](https://github.com/connectrpc/connect-go):
   Go implementation of gRPC, gRPC-Web, and Connect
-* [connect-demo](https://github.com/bufbuild/connect-demo):
-  demonstration service powering demo.connectrpc.com
+* [examples-go](https://github.com/connectrpc/examples-go):
+  Example RPC service powering https://demo.connectrpc.com and built with connect-go
 * [connect-crosstest](https://github.com/bufbuild/connect-crosstest):
   gRPC-Web and Connect interoperability tests
 * [Buf Studio](https://buf.build/studio): web UI for ad-hoc RPCs
