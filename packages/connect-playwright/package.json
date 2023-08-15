@@ -35,7 +35,7 @@
     "lint": "eslint --max-warnings 0 ."
   },
   "dependencies": {
-    "@playwright/test": "^1.36.2"
+    "@playwright/test": "^1.37.0"
   },
   "peerDependencies": {
     "@bufbuild/connect": "^0.12.0"

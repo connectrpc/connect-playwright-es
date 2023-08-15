@@ -1,5 +1,4 @@
 {
-  "name": "connect-playwright-es",
   "private": true,
   "workspaces": [
     "./packages/connect-playwright",
