@@ -1,6 +1,6 @@
 import type { BrowserContext, Request, Route } from "@playwright/test";
-import type { MethodImpl, ServiceImpl } from "@bufbuild/connect";
-import { createConnectRouter } from "@bufbuild/connect";
+import type { MethodImpl, ServiceImpl } from "@connectrpc/connect";
+import { createConnectRouter } from "@connectrpc/connect";
 import type {
   MethodInfo,
   ServiceType,
@@ -10,8 +10,8 @@ import type {
   JsonWriteOptions,
 } from "@bufbuild/protobuf";
 import { MethodKind } from "@bufbuild/protobuf";
-import type { UniversalHandler } from "@bufbuild/connect/protocol";
-import { readAllBytes } from "@bufbuild/connect/protocol";
+import type { UniversalHandler } from "@connectrpc/connect/protocol";
+import { readAllBytes } from "@connectrpc/connect/protocol";
 
 export interface MockRouter {
   service: <S extends ServiceType>(

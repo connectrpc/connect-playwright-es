@@ -1,7 +1,7 @@
 # @connectrpc/connect-playwright
 
 Connect is a family of libraries for building type-safe APIs with different languages and platforms.
-[Connect-ES](https://www.npmjs.com/package/@bufbuild/connect) brings them to TypeScript,
+[Connect-ES](https://www.npmjs.com/package/@connectrpc/connect) brings them to TypeScript,
 the web browser, and to Node.js.
 
 `@connectrpc/connect-playwright` provides utilities for writing end-to-end tests for a Connect-ES application

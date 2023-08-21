@@ -1,6 +1,6 @@
 import { useCallback, useState, FormEvent, FC } from "react";
-import { ConnectError, createPromiseClient } from "@bufbuild/connect";
-import { createConnectTransport } from "@bufbuild/connect-web";
+import { ConnectError, createPromiseClient } from "@connectrpc/connect";
+import { createConnectTransport } from "@connectrpc/connect-web";
 import { ElizaService } from "./gen/connectrpc/eliza/v1/eliza_connect.js";
 
 interface ChatMessage {

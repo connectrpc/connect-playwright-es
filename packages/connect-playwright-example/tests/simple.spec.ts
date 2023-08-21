@@ -3,7 +3,7 @@ import { expect, Locator, test } from "@playwright/test";
 import { ElizaService } from "../src/gen/connectrpc/eliza/v1/eliza_connect.js";
 import type { SayRequest } from "../src/gen/connectrpc/eliza/v1/eliza_pb.js";
 import { createMockRouter, MockRouter } from "@connectrpc/connect-playwright";
-import { Code, ConnectError } from "@bufbuild/connect";
+import { Code, ConnectError } from "@connectrpc/connect";
 
 test.describe("mocking Eliza", () => {
   let respText: Locator;
