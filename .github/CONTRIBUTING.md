@@ -1,5 +1,6 @@
-Contributing
-============
+# Contributing
+
+We'd love your help making `connect-playwright` better!
 
 If you'd like to add new exported APIs, please [open an issue][open-issue]
 describing your proposal &mdash; discussing API changes ahead of time makes
@@ -22,9 +23,8 @@ git remote add upstream https://github.com/connectrpc/connect-playwright-es.git
 git fetch upstream
 ```
 
-Make sure that the tests and the linters pass (you'll need `node`, `bash`, and the latest stable Go release installed):
-
-The easiest way to run all commands is to use the `all` npm script:
+Make sure that the tests and the linters pass (you'll need Node.js in the
+version specified in .nvmrc):
 
 ```
 npm run all
