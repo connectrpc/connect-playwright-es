@@ -9,7 +9,8 @@
     "lint": "npx tsc --noEmit && eslint --max-warnings 0 .",
     "generate": "buf generate buf.build/connectrpc/eliza",
     "test": "playwright install chromium && playwright test",
-    "format": "prettier --write --ignore-unknown '.' '!src/gen' '!playwright-report'"
+    "format": "prettier --write --ignore-unknown '.' '!src/gen' '!playwright-report'",
+    "license-header": "license-header"
   },
   "license": "ISC",
   "devDependencies": {

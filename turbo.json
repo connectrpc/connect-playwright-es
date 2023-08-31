@@ -15,6 +15,9 @@
       "cache": false
     },
     "format": {},
+    "license-header": {
+      "dependsOn": ["generate"]
+    },
     "lint": {
       "dependsOn": ["format", "^build"]
     }
