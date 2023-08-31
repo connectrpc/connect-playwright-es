@@ -21,11 +21,11 @@
   },
   "licenseHeader": {
     "licenseType": "apache",
-    "yearRange": "2021-2023",
+    "yearRange": "2023",
     "copyrightHolder": "Buf Technologies, Inc."
   },
   "devDependencies": {
-    "@bufbuild/license-header": "^0.0.1",
+    "@bufbuild/license-header": "^0.0.3",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "eslint": "^8.46.0",
