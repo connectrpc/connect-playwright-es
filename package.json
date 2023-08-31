@@ -5,12 +5,13 @@
     "./packages/connect-playwright-example"
   ],
   "scripts": {
-    "all": "turbo run build test format generate lint",
+    "all": "turbo run build test format generate lint license-header",
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "format": "turbo run format",
-    "generate": "turbo run generate"
+    "generate": "turbo run generate",
+    "license-header": "turbo run license-header"
   },
   "type": "module",
   "engineStrict": true,
@@ -18,7 +19,13 @@
     "node": ">=16",
     "npm": ">=8"
   },
+  "licenseHeader": {
+    "licenseType": "apache",
+    "yearRange": "2021-2023",
+    "copyrightHolder": "Buf Technologies, Inc."
+  },
   "devDependencies": {
+    "@bufbuild/license-header": "^0.0.1",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "eslint": "^8.46.0",
