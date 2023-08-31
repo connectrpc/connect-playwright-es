@@ -94,7 +94,7 @@ directory.
   Go implementation of gRPC, gRPC-Web, and Connect
 * [examples-go](https://github.com/connectrpc/examples-go):
   Example RPC service powering https://demo.connectrpc.com and built with connect-go
-* [connect-crosstest](https://github.com/bufbuild/connect-crosstest):
+* [connect-conformance](https://github.com/connectrpc/conformance):
   gRPC-Web and Connect interoperability tests
 * [Buf Studio](https://buf.build/studio): web UI for ad-hoc RPCs
 
