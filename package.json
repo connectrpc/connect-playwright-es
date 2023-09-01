@@ -38,6 +38,6 @@
   "dependencies": {
     "@types/jasmine": "^4.3.5",
     "jasmine": "^5.1.0",
-    "turbo": "1.10.10"
+    "turbo": "1.10.13"
   }
 }
