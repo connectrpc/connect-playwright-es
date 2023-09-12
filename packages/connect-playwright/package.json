@@ -36,10 +36,10 @@
     "license-header": "license-header"
   },
   "peerDependencies": {
-    "@connectrpc/connect": "^0.13.1",
+    "@connectrpc/connect": "^0.13.2",
     "@playwright/test": "^1.0.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.37.0"
+    "@playwright/test": "^1.37.1"
   }
 }
