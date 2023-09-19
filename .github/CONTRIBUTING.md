@@ -62,7 +62,7 @@ We're much more likely to approve your changes if you:
 * Write a [good commit message][commit-message].
 * Maintain backward compatibility.
 
-[fork]: https://github.com/bufbuild/connect-playwright-es/fork
+[fork]: https://github.com/connectrpc/connect-playwright-es/fork
 [open-issue]: https://github.com/connectrpc/connect-playwright-es/issues/new
 [cla]: https://cla-assistant.io/connectrpc/connect-playwright-es
 [commit-message]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
