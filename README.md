@@ -88,7 +88,7 @@ directory.
   Connect, gRPC, and gRPC-Web support for Protobuf and TypeScript.
 * [connect-query-es](https://github.com/connectrpc/connect-query-es):
   TypeScript-first expansion pack for TanStack Query that gives you Protobuf superpowers
-* [connect-swift](https://github.com/bufbuild/connect-swift):
+* [connect-swift](https://github.com/connectrpc/connect-swift):
   Idiomatic gRPC & Connect RPCs for Swift.
 * [connect-go](https://github.com/connectrpc/connect-go):
   Go implementation of gRPC, gRPC-Web, and Connect
