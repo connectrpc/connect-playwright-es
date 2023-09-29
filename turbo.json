@@ -2,8 +2,11 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["tsconfig.base.json", ".eslintrc.cjs", "package.json", "scripts/*"],
   "pipeline": {
+    "clean": {
+      "outputs": ["dist/**"]
+    },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["clean", "^build"],
       "outputs": ["dist/**"]
     },
     "generate": {
