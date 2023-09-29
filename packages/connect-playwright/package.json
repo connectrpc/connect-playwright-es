@@ -3,28 +3,11 @@
   "version": "0.3.0",
   "license": "Apache-2.0",
   "description": "e2e utilities for use with Playwright and Connect",
-  "type": "module",
-  "main": "./dist/cjs/index.js",
-  "types": "./dist/types/index.d.ts",
-  "exports": {
-    "import": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/esm/index.js"
-    },
-    "require": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/cjs/index.js"
-    }
-  },
-  "files": [
-    "dist/**"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/connectrpc/connect-playwright-es.git",
     "directory": "packages/connect-playwright"
   },
-  "sideEffects": false,
   "scripts": {
     "clean": "rm -rf ./dist/*",
     "build": "npm run build:cjs && npm run build:esm && npm run build:proxy",
@@ -35,6 +18,19 @@
     "lint": "eslint --max-warnings 0 .",
     "license-header": "license-header"
   },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/cjs/index.js",
+  "exports": {
+    "import": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/esm/index.js"
+    },
+    "require": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/cjs/index.js"
+    }
+  },
   "peerDependencies": {
     "@connectrpc/connect": "^1.0.0",
     "@playwright/test": "^1.0.0"
@@ -42,5 +38,8 @@
   "devDependencies": {
     "@playwright/test": "^1.37.1",
     "@types/node": "^20.6.0"
-  }
+  },
+  "files": [
+    "dist/**"
+  ]
 }
