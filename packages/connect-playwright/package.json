@@ -22,13 +22,10 @@
   "sideEffects": false,
   "main": "./dist/cjs/index.js",
   "exports": {
-    "import": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/esm/index.js"
-    },
-    "require": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/cjs/index.js"
+    ".": {
+      "module": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/proxy/index.js"
     }
   },
   "peerDependencies": {
