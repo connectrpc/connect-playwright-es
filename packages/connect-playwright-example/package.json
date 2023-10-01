@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@connectrpc/connect-playwright": "^0.3.0",
-    "@playwright/test": "^1.37.1",
+    "@playwright/test": "^1.38.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
