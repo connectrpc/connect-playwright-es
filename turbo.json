@@ -22,7 +22,7 @@
       "dependsOn": ["format", "^build"]
     },
     "attw": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["build"]
     }
   }
 }
