@@ -10,12 +10,14 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist/*",
+    "test": "playwright install chromium && jasmine --config=jasmine.json",
     "build": "npm run build:cjs && npm run build:esm && npm run build:proxy",
     "build:cjs": "tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
-    "build:esm": "tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
+    "build:esm": "tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/esm && echo >./dist/esm/package.json '{\"type\":\"module\", \"sideEffects\":false}'",
     "build:proxy": "node ../../scripts/gen-esm-proxy.mjs .",
     "format": "prettier --write --ignore-unknown '.' '!dist'",
     "lint": "eslint --max-warnings 0 .",
+    "attw": "attw --pack",
     "license-header": "license-header"
   },
   "type": "module",
@@ -33,8 +35,9 @@
     "@playwright/test": "^1.0.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.37.1",
-    "@types/node": "^20.6.0"
+    "@arethetypeswrong/cli": "^0.11.0",
+    "@playwright/test": "^1.38.1",
+    "@types/node": "^20.8.0"
   },
   "files": [
     "dist/**"
