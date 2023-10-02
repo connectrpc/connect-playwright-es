@@ -5,15 +5,16 @@
   "description": "e2e utilities for use with Playwright and Connect",
   "type": "module",
   "main": "./dist/cjs/index.js",
-  "types": "./dist/types/index.d.ts",
   "exports": {
-    "import": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/esm/index.js"
-    },
-    "require": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/cjs/index.js"
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
     }
   },
   "files": [
@@ -26,13 +27,14 @@
   },
   "sideEffects": false,
   "scripts": {
-    "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
+    "clean": "rm -rf ./dist/*",
     "test": "playwright install chromium && jasmine --config=jasmine.json",
-    "build": "npm run build:cjs && npm run build:esm+types",
-    "build:cjs": "tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
-    "build:esm+types": "tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types && echo >./dist/esm/package.json '{\"type\":\"module\", \"sideEffects\":false}'",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
+    "build:esm": "tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/esm && echo >./dist/esm/package.json '{\"type\":\"module\", \"sideEffects\":false}'",
     "format": "prettier --write --ignore-unknown '.' '!dist'",
     "lint": "eslint --max-warnings 0 .",
+    "attw": "attw --pack",
     "license-header": "license-header"
   },
   "peerDependencies": {
@@ -40,6 +42,7 @@
     "@playwright/test": "^1.0.0"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.11.0",
     "@playwright/test": "^1.38.1",
     "@types/node": "^20.8.0"
   }

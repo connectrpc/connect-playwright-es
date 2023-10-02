@@ -5,10 +5,11 @@
     "./packages/connect-playwright-example"
   ],
   "scripts": {
-    "all": "turbo run build test format generate lint license-header",
+    "all": "turbo run build test format generate lint attw license-header",
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
+    "attw": "turbo run attw",
     "format": "turbo run format",
     "generate": "turbo run generate",
     "license-header": "turbo run license-header"
