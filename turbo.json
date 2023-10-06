@@ -23,6 +23,9 @@
     },
     "lint": {
       "dependsOn": ["format", "^build"]
+    },
+    "attw": {
+      "dependsOn": ["build"]
     }
   }
 }
