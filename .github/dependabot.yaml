@@ -15,3 +15,29 @@ updates:
       timezone: UTC
       time: "07:00"
     open-pull-requests-limit: 50
+    groups:
+      test:
+        patterns:
+          - "jest"
+          - "@arethetypeswrong/*"
+          - "benchmark"
+          - "@types/benchmark"
+          - "long"
+          - "jasmine"
+          - "@types/jasmine"
+      format:
+        patterns:
+          - "@bufbuild/license-header"
+          - "prettier"
+          - "esbuild"
+      build:
+        patterns:
+          - "esbuild"
+          - "tsx"
+          - "ts-node"
+          - "turbo"
+      eslint:
+        patterns:
+          - "@typescript-eslint/*"
+          - "eslint-*"
+          - "eslint"
