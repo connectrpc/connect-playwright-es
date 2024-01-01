@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@bufbuild/license-header": "^0.0.4",
-    "@bufbuild/protobuf": "^1.5.0",
+    "@bufbuild/protobuf": "^1.6.0",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "eslint": "^8.54.0",
