@@ -40,6 +40,6 @@
   "dependencies": {
     "@types/jasmine": "^5.1.4",
     "jasmine": "^5.1.0",
-    "turbo": "1.10.16"
+    "turbo": "1.11.2"
   }
 }
