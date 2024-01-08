@@ -13,16 +13,13 @@
 // limitations under the License.
 
 import type { BrowserContext, Request, Route } from "@playwright/test";
-import type { MethodImpl, ServiceImpl } from "@connectrpc/connect";
-import { createConnectRouter } from "@connectrpc/connect";
 import type {
-  MethodInfo,
-  ServiceType,
-  BinaryReadOptions,
-  BinaryWriteOptions,
-  JsonReadOptions,
-  JsonWriteOptions,
-} from "@bufbuild/protobuf";
+  MethodImpl,
+  ServiceImpl,
+  ConnectRouterOptions,
+} from "@connectrpc/connect";
+import { createConnectRouter } from "@connectrpc/connect";
+import type { MethodInfo, ServiceType } from "@bufbuild/protobuf";
 import { MethodKind } from "@bufbuild/protobuf";
 import type { UniversalHandler } from "@connectrpc/connect/protocol";
 import { readAllBytes } from "@connectrpc/connect/protocol";
@@ -39,32 +36,18 @@ export interface MockRouter {
   ): Promise<this>;
 }
 
-interface Options {
+interface Options extends ConnectRouterOptions {
   /**
    * The base URL of the api server to match routes against.
    */
   baseUrl: string;
-  /**
-   * Options for the JSON format.
-   * By default, unknown fields are ignored.
-   */
-  jsonOptions?: Partial<JsonReadOptions & JsonWriteOptions>;
-  /**
-   * Options for the binary wire format.
-   */
-  binaryOptions?: Partial<BinaryReadOptions & BinaryWriteOptions>;
 }
 
 export function createMockRouter(
   context: BrowserContext,
   options: Options,
 ): MockRouter {
-  const { baseUrl, jsonOptions, binaryOptions } = options;
-
-  const routerOptions = {
-    jsonOptions,
-    binaryOptions,
-  };
+  const { baseUrl, ...routerOptions } = options;
 
   function addMethodRoute<S extends ServiceType, M extends MethodInfo>(
     service: S,
