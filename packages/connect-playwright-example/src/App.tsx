@@ -35,11 +35,11 @@ let transportFn;
 if (transportParam === "grpcweb") {
   transportFn = createGrpcWebTransport;
   // gRPC-web uses the binary format by default
-  useBinaryFormat = format ? format === "binary" : true;
+  useBinaryFormat = format !== null ? format === "binary" : true;
 } else {
   transportFn = createConnectTransport;
   // Connect uses the JSON format by default
-  useBinaryFormat = format ? format === "binary" : false;
+  useBinaryFormat = format !== null ? format === "binary" : false;
 }
 
 const elizaClient = createPromiseClient(
