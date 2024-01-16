@@ -44,68 +44,22 @@ test.describe("transports", () => {
     });
   });
 
-  test("treats no params as connect with JSON and correctly mocks", async ({
-    page,
-  }) => {
-    await page.goto(baseURL);
+  [
+    baseURL,
+    baseURL + "?transport=connect",
+    baseURL + "?transport=connect&format=binary",
+    baseURL + "?transport=grpcweb",
+    baseURL + "?transport=grpcweb&format=json",
+  ].forEach((url) => {
+    test(`correctly mocks with params ${url}`, async ({ page }) => {
+      await page.goto(url);
 
-    // Type a name and send
-    await statementInput.fill("Hello");
-    await sendButton.click();
+      // Type a name and send
+      await statementInput.fill("Hello");
+      await sendButton.click();
 
-    // This should be the mocked response we return from say() above
-    await expect(respText).toHaveText("Mock response");
-  });
-
-  test("correctly mocks a connect transport in JSON format", async ({
-    page,
-  }) => {
-    await page.goto(baseURL + "?transport=connect");
-
-    // Type a name and send
-    await statementInput.fill("Hello");
-    await sendButton.click();
-
-    // This should be the mocked response we return from say() above
-    await expect(respText).toHaveText("Mock response");
-  });
-
-  test("correctly mocks a connect transport in binary format", async ({
-    page,
-  }) => {
-    await page.goto(baseURL + "?transport=connect&format=binary");
-
-    // Type a name and send
-    await statementInput.fill("Hello");
-    await sendButton.click();
-
-    // This should be the mocked response we return from say() above
-    await expect(respText).toHaveText("Mock response");
-  });
-
-  test("correctly mocks a grpc web transport in binary format", async ({
-    page,
-  }) => {
-    await page.goto(baseURL + "?transport=grpcweb");
-
-    // Type a name and send
-    await statementInput.fill("Hello");
-    await sendButton.click();
-
-    // This should be the mocked response we return from say() above
-    await expect(respText).toHaveText("Mock response");
-  });
-
-  test("correctly mocks a grpc web transport in JSON format", async ({
-    page,
-  }) => {
-    await page.goto(baseURL + "?transport=grpcweb&format=json");
-
-    // Type a name and send
-    await statementInput.fill("Hello");
-    await sendButton.click();
-
-    // This should be the mocked response we return from say() above
-    await expect(respText).toHaveText("Mock response");
+      // This should be the mocked response we return from say() above
+      await expect(respText).toHaveText("Mock response");
+    });
   });
 });
