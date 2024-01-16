@@ -14,7 +14,10 @@
 
 import { useCallback, useState, FormEvent, FC } from "react";
 import { ConnectError, createPromiseClient } from "@connectrpc/connect";
-import { createConnectTransport } from "@connectrpc/connect-web";
+import {
+  createGrpcWebTransport,
+  createConnectTransport,
+} from "@connectrpc/connect-web";
 import { ElizaService } from "./gen/connectrpc/eliza/v1/eliza_connect.js";
 
 interface ChatMessage {
@@ -22,10 +25,28 @@ interface ChatMessage {
   sender: "eliza" | "user";
 }
 
+// Read the transport and format parameters from the URL
+const params = new URLSearchParams(window.location.search);
+const transportParam = params.get("transport");
+const format = params.get("format");
+
+let useBinaryFormat;
+let transportFn;
+if (transportParam === "grpcweb") {
+  transportFn = createGrpcWebTransport;
+  // gRPC-web uses the binary format by default
+  useBinaryFormat = format ? format === "binary" : true;
+} else {
+  transportFn = createConnectTransport;
+  // Connect uses the JSON format by default
+  useBinaryFormat = format ? format === "binary" : false;
+}
+
 const elizaClient = createPromiseClient(
   ElizaService,
-  createConnectTransport({
+  transportFn({
     baseUrl: "https://demo.connectrpc.com",
+    useBinaryFormat,
   }),
 );
 

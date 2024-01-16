@@ -25,7 +25,10 @@ import type {
 } from "@bufbuild/protobuf";
 import { MethodKind } from "@bufbuild/protobuf";
 import type { UniversalHandler } from "@connectrpc/connect/protocol";
-import { readAllBytes } from "@connectrpc/connect/protocol";
+import {
+  readAllBytes,
+  createAsyncIterable,
+} from "@connectrpc/connect/protocol";
 
 export interface MockRouter {
   service: <S extends ServiceType>(
@@ -136,9 +139,8 @@ export function createMockRouter(
           );
 
           if (associatedMethod === undefined) {
-            throw new Error(
-              `No associated method found for url ${request.url()}`,
-            );
+            // prettier-ignore
+            throw new Error(`No associated method found for url ${request.url()}`);
           }
           // Automatically pass-through all non-unary methods
           if (associatedMethod.kind !== MethodKind.Unary) {
@@ -186,12 +188,18 @@ async function universalHandlerToRouteResponse({
   const abortSignal = new AbortController().signal;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- The Serializable type isn't exposed by Playwright
   let body: any;
-  if (headers["content-type"] === "application/json") {
+
+  const contentType = headers["content-type"];
+
+  if (contentType === "application/json") {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     body = request.postDataJSON();
   } else {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     body = request.postDataBuffer();
+    if (contentType.startsWith("application/grpc-web")) {
+      body = createAsyncIterable([body]);
+    }
   }
 
   const response = await routeHandler({
