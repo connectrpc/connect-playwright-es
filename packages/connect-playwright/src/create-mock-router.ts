@@ -139,8 +139,9 @@ export function createMockRouter(
           );
 
           if (associatedMethod === undefined) {
-            // prettier-ignore
-            throw new Error(`No associated method found for url ${request.url()}`);
+            throw new Error(
+              `No associated method found for url ${request.url()}`,
+            );
           }
           // Automatically pass-through all non-unary methods
           if (associatedMethod.kind !== MethodKind.Unary) {
@@ -197,6 +198,7 @@ async function universalHandlerToRouteResponse({
   } else {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     body = request.postDataBuffer();
+    // gRPC-web expects the body to be an AsyncIterable
     if (contentType.startsWith("application/grpc-web")) {
       body = createAsyncIterable([body]);
     }
