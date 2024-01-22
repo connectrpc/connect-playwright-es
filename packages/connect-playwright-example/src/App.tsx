@@ -26,6 +26,9 @@ interface ChatMessage {
 }
 
 // Read the transport and format parameters from the URL
+// Note that users do not need to worry about this since this is just for
+// testing purposes so that we can easily verify various transports and
+// serialization formats.
 const params = new URLSearchParams(window.location.search);
 const transportParam = params.get("transport");
 const format = params.get("format");
