@@ -21,10 +21,14 @@ import type {
   BinaryReadOptions,
   BinaryWriteOptions,
   JsonReadOptions,
+  JsonValue,
   JsonWriteOptions,
 } from "@bufbuild/protobuf";
 import { MethodKind } from "@bufbuild/protobuf";
-import type { UniversalHandler } from "@connectrpc/connect/protocol";
+import type {
+  UniversalHandler,
+  UniversalServerRequest,
+} from "@connectrpc/connect/protocol";
 import {
   readAllBytes,
   createAsyncIterable,
@@ -187,25 +191,18 @@ async function universalHandlerToRouteResponse({
 }) {
   const headers = await request.allHeaders();
   const abortSignal = new AbortController().signal;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- The Serializable type isn't exposed by Playwright
-  let body: any;
+  let body: UniversalServerRequest["body"] = [];
 
-  const contentType = headers["content-type"];
-
-  if (contentType === "application/json") {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    body = request.postDataJSON();
+  if (headers["content-type"] === "application/json") {
+    body = request.postDataJSON() as JsonValue;
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    body = request.postDataBuffer();
-    // gRPC-web expects the body to be an AsyncIterable
-    if (contentType.startsWith("application/grpc-web")) {
-      body = createAsyncIterable([body]);
+    const buffer = request.postDataBuffer();
+    if (buffer != null) {
+      body = createAsyncIterable([buffer]);
     }
   }
 
   const response = await routeHandler({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- No current way around this, we just have no idea what this returns
     body,
     url: request.url(),
     header: new Headers(headers),
