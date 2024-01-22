@@ -35,7 +35,7 @@ let transportFn;
 if (transportParam === "grpcweb") {
   transportFn = createGrpcWebTransport;
   // gRPC-web uses the binary format by default
-  useBinaryFormat = format !== null ? format === "binary" : true;
+  useBinaryFormat = format === "binary";
 } else {
   transportFn = createConnectTransport;
   // Connect uses the JSON format by default
