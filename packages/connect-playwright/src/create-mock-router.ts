@@ -62,7 +62,7 @@ interface Options {
   binaryOptions?: Partial<BinaryReadOptions & BinaryWriteOptions>;
 }
 
-// Builds a regular express for matching paths by appending the suffix onto
+// Builds a regular expression for matching paths by appending the suffix onto
 // base and escaping forward slashes and periods
 function buildPathRegex(base: string, suffix: string) {
   const sanitized = base
