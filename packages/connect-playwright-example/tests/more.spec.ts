@@ -39,7 +39,7 @@ test.describe("more mocking", () => {
     await page.goto(project.use.baseURL ?? "");
 
     // Type some text and send
-    await statementInput.type("Hello");
+    await statementInput.fill("Hello");
     await sendButton.click();
 
     // This should NOT be the mocked response and instead should be passed through
@@ -54,7 +54,7 @@ test.describe("more mocking", () => {
       await page.goto(project.use.baseURL ?? "");
 
       // Type a name and send
-      await statementInput.type("Hello");
+      await statementInput.fill("Hello");
       await sendButton.click();
 
       // This should be empty text, because we configured the service with "mock" above,
@@ -84,7 +84,7 @@ test.describe("more mocking", () => {
       await page.goto(project.use.baseURL ?? "");
 
       // Type a name and send
-      await statementInput.type("Hello");
+      await statementInput.fill("Hello");
       await sendButton.click();
 
       // This should be the mocked response we set in our call to mock.rpc()
@@ -108,7 +108,7 @@ test.describe("more mocking", () => {
       await page.goto(project.use.baseURL ?? "");
 
       // Type a name and send
-      await statementInput.type("Hello");
+      await statementInput.fill("Hello");
       await sendButton.click();
 
       // This should be empty text, because we configured the service with "mock" above,
@@ -131,7 +131,7 @@ test.describe("more mocking", () => {
       await page.goto(project.use.baseURL ?? "");
 
       // Type a name and send
-      await statementInput.type("Hello");
+      await statementInput.fill("Hello");
       await sendButton.click();
 
       // This should be the mocked response we set in our call to mock.rpc()
@@ -151,7 +151,7 @@ test.describe("more mocking", () => {
       await page.goto(project.use.baseURL ?? "");
 
       // Type a name and send
-      await statementInput.type("Hello");
+      await statementInput.fill("Hello");
       await sendButton.click();
 
       // This should be empty text, because we configured the RPC with "mock" above,

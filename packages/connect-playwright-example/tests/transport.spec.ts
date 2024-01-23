@@ -47,7 +47,9 @@ test.describe("transports", () => {
   [
     baseURL,
     baseURL + "?transport=connect",
+    baseURL + "?transport=connect&useHttpGet=true",
     baseURL + "?transport=connect&format=binary",
+    baseURL + "?transport=connect&format=binary&useHttpGet=true",
     baseURL + "?transport=grpcweb",
     baseURL + "?transport=grpcweb&format=json",
   ].forEach((url) => {

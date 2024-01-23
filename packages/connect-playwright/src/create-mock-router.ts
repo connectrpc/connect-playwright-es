@@ -62,6 +62,17 @@ interface Options {
   binaryOptions?: Partial<BinaryReadOptions & BinaryWriteOptions>;
 }
 
+// Builds a regular express for matching paths by appending the suffix onto
+// base and escaping forward slashes and periods
+function buildPathRegex(base: string, suffix: string) {
+  const sanitized = base
+    .replace(/\/?$/, suffix)
+    .replace(/\./g, "\\.")
+    .replace(/\//g, "\\/");
+
+  return new RegExp(sanitized);
+}
+
 export function createMockRouter(
   context: BrowserContext,
   options: Options,
@@ -81,11 +92,13 @@ export function createMockRouter(
     if (method.kind !== MethodKind.Unary) {
       throw new Error("Cannot add non-unary method.");
     }
-    const requestPath = baseUrl
-      .toString()
-      .replace(/\/?$/, `/${service.typeName}/${method.name}`);
 
-    return context.route(requestPath, async (route, request) => {
+    const pathRegex = buildPathRegex(
+      baseUrl,
+      `/${service.typeName}/${method.name}`,
+    );
+
+    return context.route(pathRegex, async (route, request) => {
       if (handler !== "mock") {
         const router = createConnectRouter(routerOptions).rpc(
           service,
@@ -129,11 +142,9 @@ export function createMockRouter(
             }),
           );
         }
-        const requestPath = baseUrl
-          .toString()
-          .replace(/\/?$/, `/${service.typeName}/**`);
+        const pathRegex = buildPathRegex(baseUrl, `/${service.typeName}/*`);
 
-        return context.route(requestPath, async (route, request) => {
+        return context.route(pathRegex, async (route, request) => {
           const remainingPath = new URL(request.url()).pathname.replace(
             new RegExp(`^/${service.typeName}/`),
             "",
@@ -191,14 +202,22 @@ async function universalHandlerToRouteResponse({
 }) {
   const headers = await request.allHeaders();
   const abortSignal = new AbortController().signal;
-  let body: UniversalServerRequest["body"] = [];
+
+  // Default body to an empty byte stream
+  let body: UniversalServerRequest["body"] = createAsyncIterable<Uint8Array>(
+    [],
+  );
 
   if (headers["content-type"] === "application/json") {
+    // If content type headers are present and set to JSON, this is a POST
+    // request with a JSON body
     body = request.postDataJSON() as JsonValue;
   } else {
     const buffer = request.postDataBuffer();
-    if (buffer != null) {
-      body = createAsyncIterable([buffer]);
+    if (buffer !== null) {
+      // If postDataBuffer returns a non-null body, this is a POST
+      // request with a binary body
+      body = createAsyncIterable<Uint8Array>([buffer]);
     }
   }
 
