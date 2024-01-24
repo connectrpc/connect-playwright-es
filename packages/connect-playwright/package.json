@@ -11,10 +11,9 @@
   "scripts": {
     "clean": "rm -rf ./dist/*",
     "test": "playwright install chromium && jasmine --config=jasmine.json",
-    "build": "npm run build:cjs && npm run build:esm && npm run build:proxy",
+    "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
     "build:esm": "tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/esm && echo >./dist/esm/package.json '{\"type\":\"module\", \"sideEffects\":false}'",
-    "build:proxy": "node ../../scripts/gen-esm-proxy.mjs .",
     "format": "prettier --write --ignore-unknown '.' '!dist'",
     "lint": "eslint --max-warnings 0 .",
     "attw": "attw --pack",
@@ -25,17 +24,13 @@
   "main": "./dist/cjs/index.js",
   "exports": {
     ".": {
-      "node": {
-        "import": "./dist/proxy/index.js",
-        "require": "./dist/cjs/index.js"
-      },
       "module": "./dist/esm/index.js",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     }
   },
   "peerDependencies": {
-    "@connectrpc/connect": "^1.1.2",
+    "@connectrpc/connect": "^1.3.0",
     "@playwright/test": "^1.0.0"
   },
   "devDependencies": {
