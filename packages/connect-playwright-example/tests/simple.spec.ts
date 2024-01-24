@@ -47,7 +47,7 @@ test.describe("mocking Eliza", () => {
     await page.goto(project.use.baseURL ?? "");
 
     // Type a name and send
-    await statementInput.type("Hello");
+    await statementInput.fill("Hello");
     await sendButton.click();
 
     // This should be the mocked response we return from say() above
@@ -60,7 +60,7 @@ test.describe("mocking Eliza", () => {
     await page.goto(project.use.baseURL ?? "");
 
     // Type a name and send
-    await statementInput.type("Hello");
+    await statementInput.fill("Hello");
     await sendButton.click();
 
     // This should be empty text, because we configured the service with "mock" above,
@@ -81,7 +81,7 @@ test.describe("mocking Eliza", () => {
     await page.goto(project.use.baseURL ?? "");
 
     // Type a name and send
-    await statementInput.type("Hello");
+    await statementInput.fill("Hello");
     await sendButton.click();
 
     // In the app, calling say() rejected with a ConnectError.
@@ -100,7 +100,7 @@ test.describe("mocking Eliza", () => {
     await page.goto(project.use.baseURL ?? "");
 
     // Type a name and send
-    await statementInput.type("Hello");
+    await statementInput.fill("Hello");
     await sendButton.click();
 
     // This should NOT be the mocked response and instead should be passed through

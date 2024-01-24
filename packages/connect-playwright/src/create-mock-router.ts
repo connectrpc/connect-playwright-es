@@ -21,11 +21,18 @@ import type {
   BinaryReadOptions,
   BinaryWriteOptions,
   JsonReadOptions,
+  JsonValue,
   JsonWriteOptions,
 } from "@bufbuild/protobuf";
 import { MethodKind } from "@bufbuild/protobuf";
-import type { UniversalHandler } from "@connectrpc/connect/protocol";
-import { readAllBytes } from "@connectrpc/connect/protocol";
+import type {
+  UniversalHandler,
+  UniversalServerRequest,
+} from "@connectrpc/connect/protocol";
+import {
+  readAllBytes,
+  createAsyncIterable,
+} from "@connectrpc/connect/protocol";
 
 export interface MockRouter {
   service: <S extends ServiceType>(
@@ -55,6 +62,17 @@ interface Options {
   binaryOptions?: Partial<BinaryReadOptions & BinaryWriteOptions>;
 }
 
+// Builds a regular expression for matching paths by appending the suffix onto
+// base and escaping forward slashes and periods
+function buildPathRegex(base: string, suffix: string) {
+  const sanitized = base
+    .replace(/\/?$/, suffix)
+    .replace(/\./g, "\\.")
+    .replace(/\//g, "\\/");
+
+  return new RegExp(sanitized);
+}
+
 export function createMockRouter(
   context: BrowserContext,
   options: Options,
@@ -74,11 +92,13 @@ export function createMockRouter(
     if (method.kind !== MethodKind.Unary) {
       throw new Error("Cannot add non-unary method.");
     }
-    const requestPath = baseUrl
-      .toString()
-      .replace(/\/?$/, `/${service.typeName}/${method.name}`);
 
-    return context.route(requestPath, async (route, request) => {
+    const pathRegex = buildPathRegex(
+      baseUrl,
+      `/${service.typeName}/${method.name}`,
+    );
+
+    return context.route(pathRegex, async (route, request) => {
       if (handler !== "mock") {
         const router = createConnectRouter(routerOptions).rpc(
           service,
@@ -122,11 +142,9 @@ export function createMockRouter(
             }),
           );
         }
-        const requestPath = baseUrl
-          .toString()
-          .replace(/\/?$/, `/${service.typeName}/**`);
+        const pathRegex = buildPathRegex(baseUrl, `/${service.typeName}/*`);
 
-        return context.route(requestPath, async (route, request) => {
+        return context.route(pathRegex, async (route, request) => {
           const remainingPath = new URL(request.url()).pathname.replace(
             new RegExp(`^/${service.typeName}/`),
             "",
@@ -184,18 +202,26 @@ async function universalHandlerToRouteResponse({
 }) {
   const headers = await request.allHeaders();
   const abortSignal = new AbortController().signal;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- The Serializable type isn't exposed by Playwright
-  let body: any;
+
+  // Default body to an empty byte stream
+  let body: UniversalServerRequest["body"];
+
   if (headers["content-type"] === "application/json") {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    body = request.postDataJSON();
+    // If content type headers are present and set to JSON, this is a POST
+    // request with a JSON body
+    body = request.postDataJSON() as JsonValue;
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    body = request.postDataBuffer();
+    const buffer = request.postDataBuffer();
+    if (buffer !== null) {
+      // If postDataBuffer returns a non-null body, this is a POST
+      // request with a binary body
+      body = createAsyncIterable<Uint8Array>([buffer]);
+    } else {
+      body = createAsyncIterable<Uint8Array>([]);
+    }
   }
 
   const response = await routeHandler({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- No current way around this, we just have no idea what this returns
     body,
     url: request.url(),
     header: new Headers(headers),

@@ -13,8 +13,15 @@
 // limitations under the License.
 
 import { useCallback, useState, FormEvent, FC } from "react";
-import { ConnectError, createPromiseClient } from "@connectrpc/connect";
-import { createConnectTransport } from "@connectrpc/connect-web";
+import {
+  ConnectError,
+  createPromiseClient,
+  PromiseClient,
+} from "@connectrpc/connect";
+import {
+  createGrpcWebTransport,
+  createConnectTransport,
+} from "@connectrpc/connect-web";
 import { ElizaService } from "./gen/connectrpc/eliza/v1/eliza_connect.js";
 
 interface ChatMessage {
@@ -22,12 +29,35 @@ interface ChatMessage {
   sender: "eliza" | "user";
 }
 
-const elizaClient = createPromiseClient(
-  ElizaService,
-  createConnectTransport({
-    baseUrl: "https://demo.connectrpc.com",
-  }),
-);
+const baseUrl = "https://demo.connectrpc.com";
+let elizaClient: PromiseClient<typeof ElizaService>;
+
+// Read the transport and format parameters from the URL
+// Note that users do not need to worry about this since this is just for
+// testing purposes so that we can easily verify various transports and
+// serialization formats.
+const params = new URLSearchParams(window.location.search);
+const transportParam = params.get("transport");
+const useBinaryFormat = params.get("format") === "binary";
+
+if (transportParam === "grpcweb") {
+  elizaClient = createPromiseClient(
+    ElizaService,
+    createGrpcWebTransport({
+      baseUrl,
+      useBinaryFormat,
+    }),
+  );
+} else {
+  elizaClient = createPromiseClient(
+    ElizaService,
+    createConnectTransport({
+      baseUrl,
+      useBinaryFormat,
+      useHttpGet: params.get("useHttpGet") === "true",
+    }),
+  );
+}
 
 const UnaryExample: FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
