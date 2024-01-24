@@ -204,9 +204,7 @@ async function universalHandlerToRouteResponse({
   const abortSignal = new AbortController().signal;
 
   // Default body to an empty byte stream
-  let body: UniversalServerRequest["body"] = createAsyncIterable<Uint8Array>(
-    [],
-  );
+  let body: UniversalServerRequest["body"];
 
   if (headers["content-type"] === "application/json") {
     // If content type headers are present and set to JSON, this is a POST
@@ -218,6 +216,8 @@ async function universalHandlerToRouteResponse({
       // If postDataBuffer returns a non-null body, this is a POST
       // request with a binary body
       body = createAsyncIterable<Uint8Array>([buffer]);
+    } else {
+      body = createAsyncIterable<Uint8Array>([]);
     }
   }
 
