@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.13.5",
-    "@playwright/test": "^1.40.1",
+    "@playwright/test": "^1.41.1",
     "@types/node": "^20.10.6"
   },
   "files": [
