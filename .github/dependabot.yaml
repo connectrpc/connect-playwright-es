@@ -16,28 +16,34 @@ updates:
       time: "07:00"
     open-pull-requests-limit: 50
     groups:
-      test:
+      playwright:
         patterns:
-          - "jest"
-          - "@arethetypeswrong/*"
-          - "benchmark"
-          - "@types/benchmark"
-          - "long"
-          - "jasmine"
-          - "@types/jasmine"
-      format:
+          - "playwright*"
+          - "@playwright/*"
+      react:
         patterns:
-          - "@bufbuild/license-header"
-          - "prettier"
-          - "esbuild"
+          - "react*"
+          - "@types/react*"
+      connect-and-protobuf:
+        patterns:
+          - "@connectrpc/*"
+          - "@bufbuild/proto*"
       build:
         patterns:
+          - "typescript"
           - "esbuild"
           - "tsx"
           - "ts-node"
+          - "@types/node"
           - "turbo"
-      eslint:
+          - "@bufbuild/buf"
+          - "jasmine"
+          - "@types/jasmine"
+      lint-and-format:
         patterns:
           - "@typescript-eslint/*"
           - "eslint-*"
           - "eslint"
+          - "@bufbuild/license-header"
+          - "prettier"
+          - "@arethetypeswrong/*"
