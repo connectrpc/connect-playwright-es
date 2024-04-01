@@ -20,8 +20,8 @@
     "@connectrpc/connect": "^1.4.0",
     "@connectrpc/connect-web": "^1.4.0",
     "@connectrpc/protoc-gen-connect-es": "^1.4.0",
-    "@types/react": "^18.2.61",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^18.2.73",
+    "@types/react-dom": "^18.2.23",
     "esbuild": "^0.20.2",
     "prettier": "^3.2.5",
     "typescript": "^5.4.3"
