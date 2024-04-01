@@ -14,7 +14,7 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "@bufbuild/buf": "^1.29.0",
+    "@bufbuild/buf": "^1.30.0",
     "@bufbuild/protobuf": "^1.7.2",
     "@bufbuild/protoc-gen-es": "^1.7.2",
     "@connectrpc/connect": "^1.4.0",
@@ -22,9 +22,9 @@
     "@connectrpc/protoc-gen-connect-es": "^1.4.0",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
-    "esbuild": "^0.20.1",
+    "esbuild": "^0.20.2",
     "prettier": "^3.2.5",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.3"
   },
   "dependencies": {
     "@connectrpc/connect-playwright": "^0.3.2",
