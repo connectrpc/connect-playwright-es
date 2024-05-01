@@ -34,7 +34,7 @@
     "@playwright/test": "^1.0.0"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.15.2",
+    "@arethetypeswrong/cli": "^0.15.3",
     "@playwright/test": "^1.42.1",
     "@types/node": "^20.12.7"
   },
