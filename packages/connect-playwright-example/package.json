@@ -20,8 +20,8 @@
     "@connectrpc/connect": "^1.4.0",
     "@connectrpc/connect-web": "^1.4.0",
     "@connectrpc/protoc-gen-connect-es": "^1.4.0",
-    "@types/react": "^18.2.73",
-    "@types/react-dom": "^18.2.23",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
     "esbuild": "^0.20.2",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
@@ -29,7 +29,7 @@
   "dependencies": {
     "@connectrpc/connect-playwright": "^0.3.2",
     "@playwright/test": "^1.42.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
