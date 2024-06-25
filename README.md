@@ -3,7 +3,8 @@
 Playwright for Connect-ES
 ============
 
-[![License](https://img.shields.io/github/license/connectrpc/connect-playwright-es?color=blue)](./LICENSE)  [![Build](https://github.com/connectrpc/connect-playwright-es/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/connectrpc/connect-playwright-es/actions/workflows/ci.yaml) [![NPM Version](https://img.shields.io/npm/v/@connectrpc/connect-playwright/latest?color=green&label=%40connectrpc%2Fconnect-playwright)](https://www.npmjs.com/package/@connectrpc/connect-playwright) 
+[![License](https://img.shields.io/github/license/connectrpc/connect-playwright-es?color=blue)](./LICENSE) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconnectrpc%2Fconnect-playwright-es.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconnectrpc%2Fconnect-playwright-es?ref=badge_shield)
+ [![Build](https://github.com/connectrpc/connect-playwright-es/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/connectrpc/connect-playwright-es/actions/workflows/ci.yaml) [![NPM Version](https://img.shields.io/npm/v/@connectrpc/connect-playwright/latest?color=green&label=%40connectrpc%2Fconnect-playwright)](https://www.npmjs.com/package/@connectrpc/connect-playwright) 
 
 e2e utilities designed to simplify writing [Playwright](https://playwright.dev) tests for your Connect-ES application by providing
 an API to mock unary RPCs defined in your service.
@@ -106,3 +107,7 @@ Join us on [Slack](https://buf.build/links/slack) to stay updated on future rele
 ## Legal
 
 Offered under the [Apache 2 license](./LICENSE).
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconnectrpc%2Fconnect-playwright-es.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconnectrpc%2Fconnect-playwright-es?ref=badge_large)
