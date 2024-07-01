@@ -1,10 +1,13 @@
 {
+  "name": "connect-playwright-es",
+  "version": "0",
   "private": true,
   "workspaces": [
-    "./packages/connect-playwright",
-    "./packages/connect-playwright-example"
+    "packages/connect-playwright",
+    "packages/connect-playwright-example"
   ],
   "scripts": {
+    "clean": "git clean -Xdf",
     "all": "turbo run build test format generate lint attw license-header",
     "build": "turbo run build",
     "test": "turbo run test",
@@ -20,6 +23,7 @@
     "node": ">=16",
     "npm": ">=8"
   },
+  "packageManager": "npm@10.7.0",
   "licenseHeader": {
     "licenseType": "apache",
     "yearRange": "2023-2024",
@@ -35,11 +39,11 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^17.4.0",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   },
   "dependencies": {
     "@types/jasmine": "^5.1.4",
     "jasmine": "^5.1.0",
-    "turbo": "1.13.3"
+    "turbo": "2.0.6"
   }
 }
