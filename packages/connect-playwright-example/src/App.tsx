@@ -22,7 +22,7 @@ import {
   createGrpcWebTransport,
   createConnectTransport,
 } from "@connectrpc/connect-web";
-import { ElizaService } from "./gen/connectrpc/eliza/v1/eliza_connect.js";
+import { ElizaService } from "./gen/connectrpc/eliza/v1/eliza_pb.js";
 
 interface ChatMessage {
   text: string;

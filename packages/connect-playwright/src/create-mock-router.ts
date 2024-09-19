@@ -16,15 +16,14 @@ import type { BrowserContext, Request, Route } from "@playwright/test";
 import type { MethodImpl, ServiceImpl } from "@connectrpc/connect";
 import { createConnectRouter } from "@connectrpc/connect";
 import type {
-  MethodInfo,
-  ServiceType,
   BinaryReadOptions,
   BinaryWriteOptions,
+  DescMethod,
+  DescService,
   JsonReadOptions,
   JsonValue,
   JsonWriteOptions,
 } from "@bufbuild/protobuf";
-import { MethodKind } from "@bufbuild/protobuf";
 import type {
   UniversalHandler,
   UniversalServerRequest,
@@ -35,12 +34,11 @@ import {
 } from "@connectrpc/connect/protocol";
 
 export interface MockRouter {
-  service: <S extends ServiceType>(
+  service: <S extends DescService>(
     service: S,
     handler: "mock" | Partial<ServiceImpl<S>>,
   ) => Promise<this>;
-  rpc<M extends MethodInfo>(
-    service: ServiceType,
+  rpc<M extends DescMethod>(
     method: M,
     impl: "mock" | MethodImpl<M>,
   ): Promise<this>;
@@ -84,27 +82,22 @@ export function createMockRouter(
     binaryOptions,
   };
 
-  function addMethodRoute<S extends ServiceType, M extends MethodInfo>(
-    service: S,
+  function addMethodRoute<M extends DescMethod>(
     method: M,
     handler: MethodImpl<M> | "mock",
   ) {
-    if (method.kind !== MethodKind.Unary) {
+    if (method.methodKind !== "unary") {
       throw new Error("Cannot add non-unary method.");
     }
 
     const pathRegex = buildPathRegex(
       baseUrl,
-      `/${service.typeName}/${method.name}`,
+      `/${method.parent.typeName}/${method.name}`,
     );
 
     return context.route(pathRegex, async (route, request) => {
       if (handler !== "mock") {
-        const router = createConnectRouter(routerOptions).rpc(
-          service,
-          method,
-          handler,
-        );
+        const router = createConnectRouter(routerOptions).rpc(method, handler);
 
         const routeHandler = router.handlers[0];
         return universalHandlerToRouteResponse({
@@ -114,7 +107,6 @@ export function createMockRouter(
         });
       }
       const router = createConnectRouter(routerOptions).rpc(
-        service,
         method,
         (() => ({})) as unknown as MethodImpl<M>,
       );
@@ -134,11 +126,14 @@ export function createMockRouter(
         if (handler !== "mock") {
           return Promise.all(
             Object.entries(handler).map(([methodName, methodHandler]) => {
-              const method = service.methods[methodName];
+              const method = service.method[methodName];
               if (methodHandler === undefined) {
                 throw new Error(`No method handler found for ${methodName}`);
               }
-              return addMethodRoute(service, method, methodHandler);
+              return addMethodRoute(
+                method,
+                methodHandler as MethodImpl<DescMethod>,
+              );
             }),
           );
         }
@@ -159,14 +154,13 @@ export function createMockRouter(
             );
           }
           // Automatically pass-through all non-unary methods
-          if (associatedMethod.kind !== MethodKind.Unary) {
+          if (associatedMethod.methodKind !== "unary") {
             return route.continue();
           }
           const router = createConnectRouter(routerOptions).rpc(
-            service,
             associatedMethod,
             // By returning an empty object, the response will be a default-constructed mock object.
-            () => ({}),
+            (() => ({})) as unknown as MethodImpl<DescMethod>,
           );
 
           const routeHandler = router.handlers[0];
@@ -182,8 +176,8 @@ export function createMockRouter(
       await applyHandlers();
       return Promise.resolve(mock);
     },
-    rpc: async (service, method, handler) => {
-      await addMethodRoute(service, method, handler);
+    rpc: async (method, handler) => {
+      await addMethodRoute(method, handler);
       return Promise.resolve(mock);
     },
   };
