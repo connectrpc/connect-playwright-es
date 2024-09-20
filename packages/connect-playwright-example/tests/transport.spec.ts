@@ -14,7 +14,7 @@
 
 import { expect, Locator, test } from "@playwright/test";
 
-import { ElizaService } from "../src/gen/connectrpc/eliza/v1/eliza_connect.js";
+import { ElizaService } from "../src/gen/connectrpc/eliza/v1/eliza_pb.js";
 import { createMockRouter, MockRouter } from "@connectrpc/connect-playwright";
 
 test.describe("transports", () => {

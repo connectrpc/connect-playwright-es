@@ -15,31 +15,7 @@
 import { createMockRouter } from "./create-mock-router.js";
 import type { MockRouter } from "./create-mock-router.js";
 import { chromium } from "@playwright/test";
-import { MethodKind, Int32Value, StringValue } from "@bufbuild/protobuf";
-
-const TestService = {
-  typeName: "test.v1.TestService",
-  methods: {
-    unaryOne: {
-      name: "UnaryOne",
-      I: Int32Value,
-      O: StringValue,
-      kind: MethodKind.Unary,
-    },
-    unaryTwo: {
-      name: "UnaryTwo",
-      I: Int32Value,
-      O: StringValue,
-      kind: MethodKind.Unary,
-    },
-    serverStreaming: {
-      name: "ServerStreaming",
-      I: Int32Value,
-      O: StringValue,
-      kind: MethodKind.ServerStreaming,
-    },
-  },
-} as const;
+import { TestService } from "./testdata/gen/test_pb.js";
 
 // eslint-disable-next-line @typescript-eslint/require-await
 async function* mockFn() {

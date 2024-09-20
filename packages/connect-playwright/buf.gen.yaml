@@ -1,7 +1,7 @@
 version: v2
 plugins:
   - local: protoc-gen-es
-    out: src/gen
+    out: src/testdata/gen
     opt: target=ts
 inputs:
-  - module: buf.build/connectrpc/eliza
+  - directory: testdata

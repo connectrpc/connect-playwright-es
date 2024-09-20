@@ -14,7 +14,7 @@
 
 import { expect, Locator, test } from "@playwright/test";
 
-import { ElizaService } from "../src/gen/connectrpc/eliza/v1/eliza_connect.js";
+import { ElizaService } from "../src/gen/connectrpc/eliza/v1/eliza_pb.js";
 import { createMockRouter, MockRouter } from "@connectrpc/connect-playwright";
 
 test.describe("more mocking", () => {
@@ -49,7 +49,7 @@ test.describe("more mocking", () => {
 
   test.describe("mocking just individual RPCs", () => {
     test("default mocks a unary response", async ({ page }, { project }) => {
-      await mock.rpc(ElizaService, ElizaService.methods.say, "mock");
+      await mock.rpc(ElizaService.method.say, "mock");
 
       await page.goto(project.use.baseURL ?? "");
 
@@ -121,8 +121,8 @@ test.describe("more mocking", () => {
     test("implementation overrides a previous default mock", async ({ page }, {
       project,
     }) => {
-      await mock.rpc(ElizaService, ElizaService.methods.say, "mock");
-      await mock.rpc(ElizaService, ElizaService.methods.say, () => {
+      await mock.rpc(ElizaService.method.say, "mock");
+      await mock.rpc(ElizaService.method.say, () => {
         return {
           sentence: "Mock response",
         };
@@ -141,12 +141,12 @@ test.describe("more mocking", () => {
     test("default mock overrides a previous implementations", async ({ page }, {
       project,
     }) => {
-      await mock.rpc(ElizaService, ElizaService.methods.say, () => {
+      await mock.rpc(ElizaService.method.say, () => {
         return {
           sentence: "Mock response",
         };
       });
-      await mock.rpc(ElizaService, ElizaService.methods.say, "mock");
+      await mock.rpc(ElizaService.method.say, "mock");
 
       await page.goto(project.use.baseURL ?? "");
 
