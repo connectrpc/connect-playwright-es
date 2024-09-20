@@ -1,6 +1,6 @@
 {
   "name": "@connectrpc/connect-playwright",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "license": "Apache-2.0",
   "description": "e2e utilities for use with Playwright and Connect",
   "repository": {
