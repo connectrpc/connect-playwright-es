@@ -13,11 +13,7 @@
 // limitations under the License.
 
 import { useCallback, useState, FormEvent, FC } from "react";
-import {
-  ConnectError,
-  createPromiseClient,
-  PromiseClient,
-} from "@connectrpc/connect";
+import { ConnectError, createClient, Client } from "@connectrpc/connect";
 import {
   createGrpcWebTransport,
   createConnectTransport,
@@ -30,7 +26,7 @@ interface ChatMessage {
 }
 
 const baseUrl = "https://demo.connectrpc.com";
-let elizaClient: PromiseClient<typeof ElizaService>;
+let elizaClient: Client<typeof ElizaService>;
 
 // Read the transport and format parameters from the URL
 // Note that users do not need to worry about this since this is just for
@@ -41,7 +37,7 @@ const transportParam = params.get("transport");
 const useBinaryFormat = params.get("format") === "binary";
 
 if (transportParam === "grpcweb") {
-  elizaClient = createPromiseClient(
+  elizaClient = createClient(
     ElizaService,
     createGrpcWebTransport({
       baseUrl,
@@ -49,7 +45,7 @@ if (transportParam === "grpcweb") {
     }),
   );
 } else {
-  elizaClient = createPromiseClient(
+  elizaClient = createClient(
     ElizaService,
     createConnectTransport({
       baseUrl,

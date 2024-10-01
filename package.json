@@ -39,7 +39,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^17.9.0",
     "prettier": "^3.2.5",
-    "typescript": "^5.5.4"
+    "typescript": "~5.5.4"
   },
   "dependencies": {
     "@types/jasmine": "^5.1.4",
