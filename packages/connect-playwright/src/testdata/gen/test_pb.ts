@@ -18,21 +18,14 @@
 
 import type { GenFile, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type {
-  Int32ValueSchema,
-  StringValueSchema,
-} from "@bufbuild/protobuf/wkt";
+import type { Int32ValueSchema, StringValueSchema } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file test.proto.
  */
-export const file_test: GenFile =
-  /*@__PURE__*/
-  fileDesc(
-    "Cgp0ZXN0LnByb3RvEgR0ZXN0MusBCgtUZXN0U2VydmljZRJFCghVbmFyeU9uZRIbLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlGhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlEkUKCFVuYXJ5VHdvEhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUaHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUSTgoPU2VydmVyU3RyZWFtaW5nEhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUaHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUwAWIGcHJvdG8z",
-    [file_google_protobuf_wrappers],
-  );
+export const file_test: GenFile = /*@__PURE__*/
+  fileDesc("Cgp0ZXN0LnByb3RvEgR0ZXN0MusBCgtUZXN0U2VydmljZRJFCghVbmFyeU9uZRIbLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlGhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlEkUKCFVuYXJ5VHdvEhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUaHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUSTgoPU2VydmVyU3RyZWFtaW5nEhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUaHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUwAWIGcHJvdG8z", [file_google_protobuf_wrappers]);
 
 /**
  * @generated from service test.TestService
@@ -45,7 +38,7 @@ export const TestService: GenService<{
     methodKind: "unary";
     input: typeof Int32ValueSchema;
     output: typeof StringValueSchema;
-  };
+  },
   /**
    * @generated from rpc test.TestService.UnaryTwo
    */
@@ -53,7 +46,7 @@ export const TestService: GenService<{
     methodKind: "unary";
     input: typeof Int32ValueSchema;
     output: typeof StringValueSchema;
-  };
+  },
   /**
    * @generated from rpc test.TestService.ServerStreaming
    */
@@ -61,5 +54,7 @@ export const TestService: GenService<{
     methodKind: "server_streaming";
     input: typeof Int32ValueSchema;
     output: typeof StringValueSchema;
-  };
-}> = /*@__PURE__*/ serviceDesc(file_test, 0);
+  },
+}> = /*@__PURE__*/
+  serviceDesc(file_test, 0);
+

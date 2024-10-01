@@ -15,7 +15,7 @@
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
     "build:esm": "tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/esm && echo >./dist/esm/package.json '{\"type\":\"module\", \"sideEffects\":false}'",
-    "format": "prettier --write --ignore-unknown '.' '!dist'",
+    "format": "prettier --write --ignore-unknown '.' '!dist' '!src/testdata'",
     "lint": "eslint --max-warnings 0 .",
     "attw": "attw --pack",
     "license-header": "license-header"
