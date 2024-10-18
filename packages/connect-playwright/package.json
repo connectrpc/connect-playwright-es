@@ -31,7 +31,7 @@
     }
   },
   "peerDependencies": {
-    "@connectrpc/connect": "^2.0.0-alpha.1",
+    "@connectrpc/connect": "^2.0.0-rc.1",
     "@playwright/test": "^1.0.0"
   },
   "devDependencies": {
