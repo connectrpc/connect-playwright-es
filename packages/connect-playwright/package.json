@@ -37,7 +37,7 @@
   "devDependencies": {
     "@bufbuild/buf": "^1.46.0",
     "@arethetypeswrong/cli": "^0.16.4",
-    "@playwright/test": "^1.48.2",
+    "@playwright/test": "^1.49.0",
     "@types/node": "^22.8.6"
   },
   "files": [
