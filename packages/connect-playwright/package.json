@@ -35,10 +35,10 @@
     "@playwright/test": "^1.0.0"
   },
   "devDependencies": {
-    "@bufbuild/buf": "^1.46.0",
+    "@bufbuild/buf": "^1.47.2",
     "@arethetypeswrong/cli": "^0.17.0",
     "@playwright/test": "^1.48.2",
-    "@types/node": "^22.8.6"
+    "@types/node": "^22.10.1"
   },
   "files": [
     "dist/**"
