@@ -129,7 +129,7 @@ test("mock RPCs at rpc level", async ({ context }) => {
   });
 
   // Mock getUser with a custom response
-  await mock.rpc(UserService, UserService.methods.getUser, () => {
+  await mock.rpc(UserService.method.getUser, () => {
     return {
       id: 1,
       name: "Homer Simpson",
@@ -138,7 +138,7 @@ test("mock RPCs at rpc level", async ({ context }) => {
   });
 
   // Just return a default-constructed DeleteUserResponse without hitting the actual RPC.
-  await mock.rpc(UserService, UserService.methods.deleteUser, "mock");
+  await mock.rpc(UserService.method.deleteUser, "mock");
 });
 ```
 
