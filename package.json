@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@types/jasmine": "^5.1.5",
-    "jasmine": "^5.4.0",
+    "jasmine": "^5.5.0",
     "turbo": "2.3.3"
   }
 }
