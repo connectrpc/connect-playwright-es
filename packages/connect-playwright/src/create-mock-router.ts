@@ -68,7 +68,8 @@ function buildPathRegex(base: string, suffix: string) {
     .replace(/\./g, "\\.")
     .replace(/\//g, "\\/");
 
-  return new RegExp(`^${sanitized}$`);
+  // Using word boundary to ensure that urls with search params also match
+  return new RegExp(`^${sanitized}\\b`);
 }
 
 export function createMockRouter(

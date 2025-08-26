@@ -115,31 +115,52 @@ describe("createMockRouter()", () => {
       });
       const page = await context.newPage();
 
-      const results = await page.evaluate(async ({ serviceTypeName, firstMethodName, secondMethodName }: { serviceTypeName: string, firstMethodName: string, secondMethodName: string }) => {
-        /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
-        // We're manually creating a request here so we don't have to include
-        // a dependency in the testing environment.
-        const response1 = await fetch(`http://localhost:8080/${serviceTypeName}/${firstMethodName}`, {
-          method: "POST",
-          body: JSON.stringify({}),
-          headers: {
-            "content-type": "application/json",
-          }
-        }).then((response) => response.json());
-        const response2 = await fetch(`http://localhost:8080/${serviceTypeName}/${secondMethodName}`, {
-          method: "POST",
-          body: JSON.stringify({}),
-          headers: {
-            "content-type": "application/json",
-          }
-        }).then((response) => response.json());
-        return {
-          response1,
-          response2,
-        };
-        /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-      }, { serviceTypeName: TestService.typeName, firstMethodName: TestService.method.unaryExample.name, secondMethodName: TestService.method.unaryExampleSecondary.name });
+      const results = await page.evaluate(
+        async ({
+          serviceTypeName,
+          firstMethodName,
+          secondMethodName,
+        }: {
+          serviceTypeName: string;
+          firstMethodName: string;
+          secondMethodName: string;
+        }) => {
+          /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
+          // We're manually creating a request here so we don't have to include
+          // a dependency in the testing environment.
+          const response1 = await fetch(
+            `http://localhost:8080/${serviceTypeName}/${firstMethodName}`,
+            {
+              method: "POST",
+              body: JSON.stringify({}),
+              headers: {
+                "content-type": "application/json",
+              },
+            },
+          ).then((response) => response.json());
+          const response2 = await fetch(
+            `http://localhost:8080/${serviceTypeName}/${secondMethodName}`,
+            {
+              method: "POST",
+              body: JSON.stringify({}),
+              headers: {
+                "content-type": "application/json",
+              },
+            },
+          ).then((response) => response.json());
+          return {
+            response1,
+            response2,
+          };
+          /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        },
+        {
+          serviceTypeName: TestService.typeName,
+          firstMethodName: TestService.method.unaryExample.name,
+          secondMethodName: TestService.method.unaryExampleSecondary.name,
+        },
+      );
 
       expect(results.response1).toBe("unary example");
       expect(results.response2).toBe("unary example secondary");
