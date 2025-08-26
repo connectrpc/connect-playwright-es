@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { expect, Locator, test } from "@playwright/test";
+import { expect, type Locator, test } from "@playwright/test";
 
 import { ElizaService } from "../src/gen/connectrpc/eliza/v1/eliza_pb.js";
 import { createMockRouter, MockRouter } from "@connectrpc/connect-playwright";
