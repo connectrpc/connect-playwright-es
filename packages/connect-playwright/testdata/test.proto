@@ -17,9 +17,12 @@ syntax = "proto3";
 package test;
 
 import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
 
 service TestService {
     rpc UnaryOne(google.protobuf.Int32Value) returns (google.protobuf.StringValue);
     rpc UnaryTwo(google.protobuf.Int32Value) returns (google.protobuf.StringValue);
     rpc ServerStreaming(google.protobuf.Int32Value) returns (stream google.protobuf.StringValue);
+    rpc UnaryExample(google.protobuf.Empty) returns (google.protobuf.StringValue);
+    rpc UnaryExampleSecondary(google.protobuf.Empty) returns (google.protobuf.StringValue);
 }

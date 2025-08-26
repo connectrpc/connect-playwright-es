@@ -68,7 +68,7 @@ function buildPathRegex(base: string, suffix: string) {
     .replace(/\./g, "\\.")
     .replace(/\//g, "\\/");
 
-  return new RegExp(sanitized);
+  return new RegExp(`^${sanitized}$`);
 }
 
 export function createMockRouter(
