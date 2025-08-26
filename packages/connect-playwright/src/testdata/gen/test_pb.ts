@@ -18,14 +18,14 @@
 
 import type { GenFile, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Int32ValueSchema, StringValueSchema } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
+import type { EmptySchema, Int32ValueSchema, StringValueSchema } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_empty, file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file test.proto.
  */
 export const file_test: GenFile = /*@__PURE__*/
-  fileDesc("Cgp0ZXN0LnByb3RvEgR0ZXN0MusBCgtUZXN0U2VydmljZRJFCghVbmFyeU9uZRIbLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlGhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlEkUKCFVuYXJ5VHdvEhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUaHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUSTgoPU2VydmVyU3RyZWFtaW5nEhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUaHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUwAWIGcHJvdG8z", [file_google_protobuf_wrappers]);
+  fileDesc("Cgp0ZXN0LnByb3RvEgR0ZXN0MoADCgtUZXN0U2VydmljZRJFCghVbmFyeU9uZRIbLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlGhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlEkUKCFVuYXJ5VHdvEhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUaHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUSTgoPU2VydmVyU3RyZWFtaW5nEhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUaHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUwARJECgxVbmFyeUV4YW1wbGUSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUSTQoVVW5hcnlFeGFtcGxlU2Vjb25kYXJ5EhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlYgZwcm90bzM", [file_google_protobuf_wrappers, file_google_protobuf_empty]);
 
 /**
  * @generated from service test.TestService
@@ -53,6 +53,22 @@ export const TestService: GenService<{
   serverStreaming: {
     methodKind: "server_streaming";
     input: typeof Int32ValueSchema;
+    output: typeof StringValueSchema;
+  },
+  /**
+   * @generated from rpc test.TestService.UnaryExample
+   */
+  unaryExample: {
+    methodKind: "unary";
+    input: typeof EmptySchema;
+    output: typeof StringValueSchema;
+  },
+  /**
+   * @generated from rpc test.TestService.UnaryExampleSecondary
+   */
+  unaryExampleSecondary: {
+    methodKind: "unary";
+    input: typeof EmptySchema;
     output: typeof StringValueSchema;
   },
 }> = /*@__PURE__*/
