@@ -15,7 +15,7 @@
 import { expect, type Locator, test } from "@playwright/test";
 
 import { ElizaService } from "../src/gen/connectrpc/eliza/v1/eliza_pb.js";
-import { createMockRouter, MockRouter } from "@connectrpc/connect-playwright";
+import { createMockRouter, type MockRouter } from "@connectrpc/connect-playwright";
 
 test.describe("more mocking", () => {
   let respText: Locator;
