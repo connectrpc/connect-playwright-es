@@ -32,13 +32,13 @@
   "devDependencies": {
     "@bufbuild/license-header": "^0.0.4",
     "@bufbuild/protobuf": "^2.2.3",
-    "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@typescript-eslint/parser": "^7.14.1",
-    "eslint": "^8.57.0",
-    "eslint-import-resolver-typescript": "^3.7.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^17.15.1",
-    "prettier": "^3.4.2",
+    "@typescript-eslint/eslint-plugin": "^8.48.0",
+    "@typescript-eslint/parser": "^8.48.0",
+    "eslint": "^9.39.1",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^17.23.1",
+    "prettier": "^3.7.3",
     "typescript": "~5.7.3"
   },
   "dependencies": {
