@@ -9,6 +9,8 @@
   "scripts": {
     "clean": "git clean -Xdf",
     "all": "turbo run build test format generate lint attw license-header",
+    "setversion": "node scripts/set-workspace-version.js",
+    "postsetversion": "npm run all",
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
