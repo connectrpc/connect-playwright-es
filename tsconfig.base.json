@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
@@ -18,6 +17,8 @@
 
     // We need node's module resolution, so we do not have to skip lib checks
     "moduleResolution": "Node",
+    // moduleResolution=Node is deprecated in TypeScript 6.0.
+    "ignoreDeprecations": "6.0",
     "skipLibCheck": false
   }
 }
