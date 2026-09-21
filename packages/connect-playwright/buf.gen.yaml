@@ -4,6 +4,8 @@ clean: true
 plugins:
   - local: protoc-gen-es
     out: src/testdata/gen
-    opt: target=ts
+    opt:
+      - target=ts
+      - import_extension=js
 inputs:
   - directory: testdata
