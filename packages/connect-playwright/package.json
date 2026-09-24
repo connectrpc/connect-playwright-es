@@ -13,8 +13,8 @@
     "test": "playwright install chromium && jasmine --config=jasmine.json",
     "generate": "buf generate",
     "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
-    "build:esm": "tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/esm && echo >./dist/esm/package.json '{\"type\":\"module\", \"sideEffects\":false}'",
+    "build:cjs": "tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --ignoreDeprecations 6.0 --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
+    "build:esm": "tsc --project tsconfig.json --outDir ./dist/esm && echo >./dist/esm/package.json '{\"type\":\"module\", \"sideEffects\":false}'",
     "format": "prettier --write --ignore-unknown '.' '!dist' '!src/testdata'",
     "lint": "eslint --max-warnings 0 .",
     "attw": "attw --pack",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@bufbuild/buf": "^1.50.0",
     "@arethetypeswrong/cli": "^0.17.3",
-    "@playwright/test": "^1.56.1",
+    "@playwright/test": "^1.61.1",
     "@types/node": "^22.13.0"
   },
   "files": [
