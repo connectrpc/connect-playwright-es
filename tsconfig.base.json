@@ -16,6 +16,8 @@
     "noImplicitOverride": true,
     "moduleResolution": "Node16",
     "module": "Node16",
+    "verbatimModuleSyntax": true,
+    "declaration": true,
     "skipLibCheck": false
   }
 }
