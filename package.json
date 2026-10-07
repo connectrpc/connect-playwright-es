@@ -22,7 +22,7 @@
   "type": "module",
   "engineStrict": true,
   "engines": {
-    "node": ">=16",
+    "node": ">=22",
     "npm": ">=8"
   },
   "packageManager": "npm@10.7.0",
