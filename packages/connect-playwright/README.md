@@ -9,7 +9,7 @@ using [Playwright](https://playwright.dev/).
 
 ## Installation
 
-```
+```bash
 npm install @connectrpc/connect-playwright
 ```
 
@@ -23,7 +23,7 @@ allows you to modify the behavior of one-to-many RPCs in your service.
 
 Let's walk through an example using the following Protobuf file:
 
-```protobuf
+```proto
 syntax = "proto3";
 package example;
 
@@ -63,17 +63,17 @@ and an options object for specifying the `baseUrl` that your Connect client woul
 non-test environment. This function call will return a `MockRouter` object that can be used to specify RPC
 behavior.
 
-The `MockRouter` type offers two methods, which allows you to specify mocks at either the service level or the
+The `MockRouter` type offers two methods, which allow you to specify mocks at either the service level or the
 individual RPC level.
 
-#### Service-Level Mocks
+### Service-Level Mocks
 
 The `service` method provides the ability to mock an entire service in one invocation. It accepts two arguments: the
 service definition generated from your Protobuf file and then, one of two values:
 
 - An object containing all the desired mock implementations for your RPCs.
 - `mock` - A string that configures the call to simply return the type specified by the RPC, with all default
-  values set. This is useful if you don’t care about the response but want it to succeed without hitting the backend.
+  values set. This is useful if you don't care about the response but want it to succeed without hitting the backend.
 
 > **Note: any RPC not specified will simply pass through to the actual implementation.**
 
@@ -111,10 +111,10 @@ await createMockRouter(context, {
 }).service(UserService, "mock");
 ```
 
-#### RPC-Level Mocks
+### RPC-Level Mocks
 
-The `rpc` method provides the ability to mock a single RPC. It accepts three arguments: the service definition
-generated from your Protobuf file, the RPC name you would like to mock, and then, one of two values:
+The `rpc` method provides the ability to mock a single RPC. It accepts two arguments: the method definition
+generated from your Protobuf file (for example, `UserService.method.getUser`), and then, one of two values:
 
 - A function containing the desired mock implementation for the RPC.
 - `mock` - A string that configures the call to simply return the type specified by the RPC, with all default
