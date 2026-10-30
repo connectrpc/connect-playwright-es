@@ -4,10 +4,14 @@ An example using the connect-playwright utilities to test an application using R
 
 To run the tests:
 
-`npm run test`
+```bash
+npm run test
+```
 
 To actually run the app under test:
 
-`npm start`
+```bash
+npm start
+```
 
 and then visit http://localhost:3000 in your browser.

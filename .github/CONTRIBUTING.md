@@ -18,7 +18,7 @@ you to sign your commits when you open your pull request, and provide helpful ti
 
 [Fork][fork], then clone the repository:
 
-```
+```bash
 git clone git@github.com:your_github_username/connect-playwright-es.git
 cd connect-playwright-es
 git remote add upstream https://github.com/connectrpc/connect-playwright-es.git
@@ -28,7 +28,7 @@ git fetch upstream
 Make sure that the tests and the linters pass (you'll need Node.js in the
 version specified in .nvmrc):
 
-```
+```bash
 npm run all
 ```
 
@@ -36,7 +36,7 @@ npm run all
 
 Start by creating a new branch for your changes:
 
-```
+```bash
 git checkout main
 git fetch upstream
 git rebase upstream/main
@@ -46,7 +46,7 @@ git checkout -b cool_new_feature
 Make your changes, then ensure that `npm run all` still passes.
 When you're satisfied with your changes, push them to your fork.
 
-```
+```bash
 git commit -a
 git push origin cool_new_feature
 ```
@@ -67,4 +67,4 @@ We're much more likely to approve your changes if you:
 [fork]: https://github.com/connectrpc/connect-playwright-es/fork
 [open-issue]: https://github.com/connectrpc/connect-playwright-es/issues/new
 [dco]: https://developercertificate.org
-[commit-message]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+[commit-message]: https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html

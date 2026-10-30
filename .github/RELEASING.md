@@ -28,7 +28,7 @@
 - We generate release notes with the GitHub feature, see
   https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
 - Only changes that impact users should be listed. No need to list things like
-  doc changes (unless it’s something major), dependency version bumps, or similar.
+  doc changes (unless it's something major), dependency version bumps, or similar.
   Remove them from the generated release notes.
 - If the release introduces a major new feature or change, add a section at the
   top that explains it for users. A good example is https://github.com/connectrpc/connect-es/releases/tag/v0.10.0
