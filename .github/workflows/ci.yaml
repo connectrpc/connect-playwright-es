@@ -18,7 +18,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Cache
         uses: actions/cache@v5
